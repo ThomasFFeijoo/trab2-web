@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="robots" content="noindex" />
+
+    <meta name="viewport" content="width=device-width" />
+    <title>Confirmação de pagamento</title>
+
+
+
+
+
+
+
+    <link rel="stylesheet" type="text/css" href="https://d29i73yjyoycw7.cloudfront.net/site/css/payment_methods.1487342835067.css"
+    />
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/css_pagseguro/pagamento.css">
+
+
+</head>
+
+<body class="content-web   ">
+
+<div id="captai__sidebar" class="" data-value="">
+    <h3>Resumo da compra</h3>
+    <h5>Detalhes do carrinho</h5>
+    <ul>
+        <li>Produto</li>
+        <li>Produto</li>
+        <li>Produto</li>
+        <li>Produto</li>
+        <li>Produto</li>
+        <li>Produto</li>
+        <li>Produto</li>
+
+
+    </ul>
+    <h5>Condições</h5>
+    <p>Autorizo o PagSeguro a debitar o pagamento  diretamente em meu cartão de crédito
+        de acordo com as seguintes condições:</p>
+    <fieldset>
+        <h5>Valor a pagar</h5>
+        <p><strong>R$ preço</strong>
+        </p>
+    </fieldset>
+    <br/>
+    <p>Você receberá o comprovante de pagamento em <strong>email</strong></p>
+    <p>*Este pagamento será processado pelo PagSeguro, e pode ser cancelado a qualquer momento.</p>
+</div>
+
+<section id="captai__content">
+
+    <div id="content">
+
+        <form id="payment" action="#" method="post" class="captai__payment form-inline">
+            <input type="hidden" name="deviceId" class="deviceId" value="" />
+            <input type="hidden" name="tokenDNA" class="tokenDNA" value="" />
+
+            <input type="hidden" id="acsrfToken" name="acsrfToken" value="muEm6ac4n.BmphvhymO8dy43H8uiFWEreYy09Ql8uQc2-1487686638596-14400000-48"
+            />
+            <input type="hidden" id="t" name="t" value="f1bc3ea896d0299a3eae9fce24f6a692" />
+            <input type="hidden" id="ab-test" name="ab-test" value="NONE" />
+
+            <fieldset class="payment-step content" class="" data-omniture-section="Meios de pagamento">
+
+                <h3>Dados do Cartão de Crédito</h3>
+
+                <input type="hidden" id="pciToken" name="pciToken" />
+                <input type="hidden" id="pciTokenError" name="pciTokenError" />
+
+                <div class="creditCardFields">
+                    <h5 class="obsText">Seu pagamento passará por uma análise interna e estará sujeito à confirmação
+                        feita por e-mail. O prazo de entrega será considerado somente após a confirmação
+                        feita pela operadora. Você sempre será notificado, por e-mail, sobre qualquer alteração no
+                        fluxo de processamento do seu pedido.</h5>
+
+                    <div class="step" id="cardDataContainer" step-title="Alterar o cartão">
+                        <input type="hidden" id="creditCardCode" value="" />
+                        <input type="hidden" id="creditCardBrand" name="creditCardBrand" value="" />
+                        <input type="hidden" name="creditCardToken" id="creditCardToken" />
+                        <input type="hidden" name="senderEmail" value="" />
+
+                        <div class="double-columns first-block">
+
+                            <div id="ccBrandConsult" class="form-group captai__inline_inputs">
+                                <label for="creditCardNumber">Número do cartão</label><br/>
+                                <input class="form-control captai__bigger_input" data-title="Número do cartão" type="text" id="creditCardNumber" value="" maxlength="19" autocomplete="off" /><br/>
+                                <img src="https://d29i73yjyoycw7.cloudfront.net/site/images/bandeiras_assinatura.png" data-reactid=".0.1.0.1.0.0.0.1.0.1.1.0.0.2">
+                            </div>
+
+                            <div class="form-group cardDueDate captai__inline_inputs" style="margin-top: -20px; margin-left: 18px;">
+                                <label for="creditCardDueDate_Month">Data de validade</label><br/>
+                                <input class="form-control captai__smaller_input" data-title="Data de validade do cartão" type="text" data-autotab-target="creditCardDueDate_Year" placeholder="MM"
+                                       maxlength="2" id="creditCardDueDate_Month" />
+                                <input class="form-control captai__small_input" data-title="Data de validade do cartão" type="text" placeholder="AAAA" maxlength="4" class="small" id="creditCardDueDate_Year"
+                                />
+                            </div><br/>
+                            <div class="form-group field cardHolderName  a captai__inline_inputs" style="">
+                                <label for="creditCardHolderName">
+                                    Nome do dono do cartão
+                                </label><br/>
+                                <input placeholder="Ex.: CARLOS A F DE OLIVEIRA" data-title="Nome do dono do cartão" class="form-control captai__bigger_input" type="text" id="creditCardHolderName" name="creditCardHolderName"
+                                       holderField="name" />
+                            </div>
+                            <div class="form-group cardCvv captai__inline_inputs" style="margin-left: 18px;">
+                                <label for="creditCardCVV">CVV</label><br/>
+                                <input data-title="Código de segurança do cartão" class="form-control captai__medium_input" type="text" id="creditCardCVV" value="" autocomplete="off"
+                                />
+                            </div>
+                            <br/>
+                            <div class="clear-all"></div>
+                        </div>
+
+
+                    </div>
+                    <!-- step -->
+
+                    <div class="clear-all"></div>
+
+                    <div class="step subcontent" id="cardHolderContainer" step-title="Informar dados do dono do cartão">
+
+                        <div id="cardHolderDataFields">
+                            <div id="cardHolderData" class="holderData double-columns first-block">
+
+                                <div class="holderCPFField field  a captai__inline_inputs">
+                                    <label for="holderCPF">
+                                        CPF
+                                    </label><br/>
+                                    <input class="form-control captai__bigger_input" type="text" id="holderCPF" name="creditCardHolderCPF" value="" holderField="cpf" data-title="CPF do dono do cartão"
+                                    />
+                                </div>
+                                <input type="hidden" name="holderCanEditPhone" value="true" />
+
+
+                                <div class="holderBornDateField field  a captai__inline_inputs" style="margin-left: 20px;">
+                                    <label for="holderBornDate">
+                                        Data de nascimento
+                                    </label><br/>
+                                    <input placeholder="Ex.: 20/05/1980" class="form-control captai__medium_input" type="text" id="creditCardHolderBirthDate" name="creditCardHolderBirthDate" value="" data-title="Data de nascimento"
+                                           maxlength="10" />
+                                </div> <br/>
+                                <div class="holderPhoneField field captai__inline_inputs">
+                                    <label for="holderAreaCode">
+                                        Celular do dono do cartão
+                                    </label><br/>
+
+                                    <input class="form-control captai__smaller_input" type="text" data-autotab-target="holderPhone" maxlength="2" id="holderAreaCode" name="creditCardHolderAreaCode"
+                                           holderField="areaCode" value="" data-title="Celular do dono do cartão" />
+                                    <input class="form-control captai__big_input " type="text" maxlength="9" id="holderPhone" name="creditCardHolderPhone" holderField="phone" value="" data-title="Celular do dono do cartão"
+                                    />
+                                </div>
+                                <div class="clear-all"></div>
+                            </div>
+                        </div>
+
+                        <div class="field hide">
+                            <input type="hidden" name="installmentQuantity" value="1" />
+                        </div>
+
+
+                        <div class="clear-all"></div>
+
+                    </div>
+                    <!-- step -->
+                </div>
+
+            </fieldset>
+            <fieldset id="cardBillingAddress" class="" data-omniture-section="Endereço para entrega">
+                <h3>Endereço de cobrança</h3>
+
+                <div class="informAddress">
+                    <div class="incompleteAddress">
+                        <div class="fillAddress">
+                            <div class="postalCodeConsult form-group">
+                                <label for="shippingAddressPostalCode">CEP </label><br/>
+                                <input class="form-control" data-title="CEP" data-editable="" class="medium addressPostalCode" type="text" holderField="postalCode" id="cardBillingAddressPostalCode"
+                                       name="cardBillingAddressPostalCode" value="" autocomplete="off" maxlength="8" />
+                                <span class="pagseguro-button search-postal-code-button gray-theme">Buscar</span>
+                            </div><br/><br/>
+                            <div class="address-street-field form-group">
+                                <label for="shippingAddressStreet">Rua</label><br/>
+                                <input placeholder="Ex: Av. Brasil" class="form-control" data-title="Rua" data-editable="true" class="big addressStreet" type="text" id="cardBillingAddressStreet" holderField="street"
+                                       name="cardBillingAddressStreet" value="" maxlength="160" />
+                            </div>
+                            <div class="address-complement-field showAlways form-group">
+                                <label for="shippingAddressComplement">Complemento <span>Opcional</span></label><br/>
+                                <input placeholder="Ex.: apartamento 73." class="form-control" data-title="Complemento" data-editable="true" class="addressComplement" type="text" id="cardBillingAddressComplement"
+                                       holderField="complement" name="cardBillingAddressComplement" value="" maxlength="40" size="20" />
+                            </div>
+                            <div class="address-number-field showAlways form-group">
+                                <label for="shippingAddressNumber">Número</label><br/>
+                                <input placeholder="Ex.: 1384." class="form-control captai__small_input" data-title="Número" data-editable="true" class="addressNumber" type="text" id="cardBillingAddressNumber" holderField="number"
+                                       name="cardBillingAddressNumber" value="" maxlength="20" size="10" />
+                            </div>
+                            <div class="clear-all"></div><br/>
+                            <div class="address-district-field form-group">
+                                <label for="shippingAddressDistrict">Bairro</label><br/>
+                                <input placeholder="Ex: Centro" class="form-control" data-title="Bairro" data-editable="true" type="text" name="cardBillingAddressDistrict" id="cardBillingAddressDistrict"
+                                       holderField="district" value="" class="medium addressDistrict" maxlength="60" />
+                            </div>
+                            <div class="address-city-field form-group">
+                                <label for="shippingAddressCity">Cidade</label><br/>
+                                <input placeholder="Ex: São Paulo" class="form-control" data-title="Cidade" data-editable="true" class="medium addressCity" type="text" id="cardBillingAddressCity" holderField="city"
+                                       name="cardBillingAddressCity" value="" maxlength="60" />
+                            </div>
+                            <div class="address-state-field form-group">
+                                <label for="shippingAddressState">Estado</label><br/>
+                                <input placeholder="Ex: SP" class="form-control captai__small_input" type="text" name="billingAddressState" id="billingAddressState" holderField="state" class="medium addressState" maxlength="2"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="mainAction" class="content">
+                  <p class="captai__inline_inputs" style="float: left;margin-top: -15px;">
+                      <img style="width: 80px;" src="https://d29i73yjyoycw7.cloudfront.net/site/images/comodo_secure_seal_100x85_transp.png" alt="safe payment">
+                  </p>
+                    <button type="button" id="creditCardPaymentButton" class="pagseguro-button mainActionButton btn btn-primary btn-lg">Confirmar o pagamento</button>
+
+
+                    <div id="defaultLoader" class="loadBox">
+                        <div class="uolMsg uolMsg-medium uolMsg-loading">
+                            <h3>Processando. Aguarde...</h3>
+                        </div>
+                    </div>
+
+                    <div id="progressLoader" class="loadBox">
+                        <div id="progress-message" class="uolMsg uolMsg-medium uolMsg-loading ">
+                            <h3>Processando o seu pagamento. Aguarde...</h3>
+                        </div>
+                        <div id="credicCardProgress">
+                            <div class="bar">
+                                <div class="pct themeBgColor themeTextColor" style="width:0%;" data-progress="0"></div>
+                            </div>
+                            <p><strong class="rounded themeTextColor">0</strong></p>
+                        </div>
+                    </div>
+
+                </div>
+                <input type="hidden" name="shippingType" value="3" />
+            </fieldset>
+        </form>
+
+    </div>
+</section>
+
+<footer>
+</footer>
+<script src="/js_pagseguro/pagSeguro/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="<?php echo $this->pagSeguroData->getJavascriptURL(); ?>"></script>
+<script type="text/javascript" src="/js_pagseguro/pagSeguro/jquery.colorbox-min.js"></script>
+<script type="text/javascript" src="/js_pagseguro/pagSeguro/helpers.js"></script>
+<script type="text/javascript" src="/js_pagseguro/pagSeguro/checkout.js"></script>
+<script type="text/javascript" src="/js_pagseguro/pagSeguro/Utils.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,622 @@
+/*
+    ColorBox Core Style:
+    The following CSS is consistent between example themes and should not be altered.
+*/
+#colorbox, #cboxOverlay, #cboxWrapper{position:absolute; top:0; left:0; z-index:9999; overflow:hidden; outline: none; }
+#cboxOverlay{position:fixed; width:100%; height:100%; cursor:default !important;}
+#cboxMiddleLeft, #cboxBottomLeft{clear:left;}
+#cboxContent{position:relative;}
+#cboxLoadedContent{overflow:auto;}
+#cboxTitle{margin:0;}
+#cboxLoadingOverlay, #cboxLoadingGraphic{position:absolute; top:0; left:0; width:100%; height:100%;}
+#cboxPrevious, #cboxNext, #cboxClose, #cboxSlideshow{cursor:pointer;}
+.cboxPhoto{float:left; margin:auto; border:0; display:block; max-width:none;}
+.cboxIframe{width:100%; height:100%; display:block; border:0;}
+#colorbox, #cboxContent, #cboxLoadedContent{box-sizing:content-box;}
+
+
+#colorbox.pagseguro-admin #cboxTitle,#colorbox.pagseguro-ibanking #cboxTitle{ font-size:14px; color:#234F10; font-weight:bold; float:none; left:15px; right:15px; top:13px; padding-bottom:5px; border-bottom:2px solid #B2C1AA;  }
+#colorbox.pagseguro-admin #cboxClose { top:5px; }
+#colorbox.pagseguro-admin #cboxLoadedContent, #colorbox.pagseguro-ibanking #cboxLoadedContent { padding-top:45px;}
+#colorbox.pagseguro-ibanking #cboxTitle { color:#4da731; border-bottom:1px solid #4da731;}
+#colorbox.pagseguro-ibanking #cboxClose, #colorbox.pagseguro-admin #cboxClose { top:3px; right: 0; text-indent: -5000px; overflow: hidden; background:url(https://stc.pagseguro.uol.com.br/pagseguro/i/ibanking/charging/btn_fechar_modal.gif) left top no-repeat; width:32px; height:25px; }
+#colorbox.pagseguro-ibanking #cboxClose:focus, #colorbox.pagseguro-admin #cboxClose:focus { outline:none; }
+#colorbox.pagseguro-ibanking #cboxClose:hover, #colorbox.pagseguro-admin #cboxClose:hover { opacity: 0.9; }
+
+/*
+    User Style:
+    Change the following styles to modify the appearance of ColorBox.  They are
+    ordered & tabbed in a way that represents the nesting of the generated HTML.
+*/
+#cboxOverlay{background:#000;}
+#colorbox{}
+    #cboxContent{background:#fff; overflow:visible;}
+        .cboxIframe{background:#fff;}
+        #cboxLoadedContent{
+			background:#fff;
+			border:3px solid #464646;
+			padding:15px;
+		}
+        #cboxLoadingOverlay{background:#fff;}
+        #cboxLoadingGraphic{background:url(https://stc.pagseguro.uol.com.br/pagseguro/i/wait_big.gif) no-repeat center center;}
+        #cboxTitle{
+			position:absolute;
+			top:15px;
+			left:15px;
+		}
+		#colorbox h1{
+			color:#468638;
+			font-size:18px;
+			font-weight:bold;
+			margin-bottom:10px;
+		}
+		#cboxClose{
+			position:absolute;
+			top:10px;
+			right:20px;
+			*left:80%;
+			*text-align:right;
+			text-transform: uppercase;
+			font-weight: normal;
+			color: #035EC9;
+			font-size: 10px;
+			padding: 9px 0 0 0;
+			display: inline-block;
+			border:none; background:none;
+		}
+		#cboxClose:hover{
+			text-decoration:underline;
+		}
+
+
+		/* COLORBOX IFRAME SEM PADDINGs e BORDERs */
+		.iframe-custom #cboxLoadedContent{
+			padding: 0px !important;
+		}
+		.iframe-custom #cboxClose{
+			background: url(https://stc.pagseguro.uol.com.br/pagseguro/i/ibanking/charging/btn_fechar_modal.gif) left top no-repeat;
+		    cursor: pointer;
+		    display: block;
+		    position: absolute;
+		    height: 25px;
+		    text-indent: -9999px;
+		    width: 32px;
+		    right: 0px !important;
+		    top: 3px !important;
+		    border:none;
+		}
+
+
+/*
+	PAGSEGURO SCROLL
+	Se o modal possuir scroll, ele corrige paddings e coloca o scroll no modal ao inv�s
+	de colocar no conte�do. Dessa maneira, conseguimos ganhar uns 40px de largura.
+*/
+#colorbox.pagseguro-scroll #cboxLoadedContent{
+	padding-right: 0px;
+	padding-left: 0px;
+	border-top:2px solid #B2C1AA;
+	margin-top: 40px;
+	padding-top: 0px;
+}
+
+#colorbox.pagseguro-scroll #cboxLoadedContent > div{
+	padding: 10px;
+	overflow: auto;
+}
+
+#colorbox.pagseguro-scroll #cboxTitle{
+	font-size:14px;
+	color: #234F10;
+	font-weight: bold;
+	float: none;
+	left: 0px;
+	top: 0px;
+	padding: 12px 10px;
+	border-left: 3px solid #464646;
+    border-right: 3px solid #464646;
+    border-top: 3px solid #464646;
+    border-bottom: 0px;
+    width: 100%;
+    box-sizing: border-box;
+    z-index: 2;
+}
+
+#colorbox.pagseguro-scroll #cboxClose {
+	z-index: 3;
+}
+#pagseguro-tooltip:not(.no-arrow):before{z-index:0;content:'';display:block;width:20px;height:20px;position:absolute;bottom:-12px;left:50%;margin-left:-10px;border-right:1px solid #46a928;border-bottom:1px solid #46a928;background:#FFF;behavior:url(-ms-transform.htc);-moz-transform:rotate(45deg);-webkit-transform:rotate(45deg);-o-transform:rotate(45deg);-ms-transform:rotate(45deg);overflow:visible;box-shadow:5px 0 0 rgba(230,230,230,.8)}#pagseguro-tooltip.left:before{left:4px;margin-left:0}#pagseguro-tooltip.right:before{left:auto;margin-left:0;right:4px}#pagseguro-tooltip.bottom:before{top:-11px;bottom:auto;-moz-transform:rotate(225deg);-webkit-transform:rotate(225deg);-o-transform:rotate(225deg);-ms-transform:rotate(225deg);box-shadow:none}#pagseguro-tooltip{border:1px solid #46a928;box-shadow:5px 5px 0 rgba(230,230,230,.8);background:#FFF}#pagseguro-tooltip h1#pagseguro-tooltip-title{position:relative;z-index:20;font-size:13px;padding:0 0 5px 0;border-bottom:1px solid #d2d4d3;margin-bottom:5px}#pagseguro-tooltip #pagseguro-wrapper{position:relative;z-index:10}#pagseguro-tooltip #pagseguro-wrapper.auto-width{overflow-x:hidden}#pagseguro-tooltip #pagseguro-wrapper.auto-height{overflow-y:hidden}#pagseguro-tooltip #pagseguro-tooltip-close{position:absolute;right:10px;top:10px;font-size:11px;z-index:25}#pagseguro-tooltip.pagseguro-ibanking-tooltip{background:#fbfbfb;border:1px solid #cbcbcb;border-radius:5px;box-shadow:0 0 15px #A2A2A2;color:#585858;padding:15px;line-height:15px}#pagseguro-tooltip.pagseguro-ibanking-tooltip:before{bottom:-4px;box-shadow:none}#pagseguro-tooltip.pagseguro-ibanking-tooltip:not(.no-arrow):before{width:0;height:0;margin-left:-2px;border:4px solid transparent;top:-4px;top:auto}#pagseguro-tooltip.pagseguro-ibanking-tooltip:not(.no-arrow).bottom:before{border-top-color:#fbfbfb;top:-4px;bottom:auto}#pagseguro-tooltip.pagseguro-ibanking-tooltip:not(.no-arrow).left:before{border-right-color:#fbfbfb;top:50%;margin-top:-4px;left:-2px;right:auto;bottom:auto}#pagseguro-tooltip.pagseguro-ibanking-tooltip:not(.no-arrow).right:before{border-left-color:#fbfbfb;top:50%;margin-top:-4px;right:-4px;left:auto;bottom:auto}
+
+body{min-width:986px;}
+.centerDiv{width:954px}
+
+body > .loadBox{display:none;}
+
+
+#content > .uolMsg{
+	background-color: #fff;
+}
+
+
+/* MAIN ACTION BUTTON */
+form > .mainActionButton,
+.mainAction > .mainActionButton,
+.content > .mainActionButton{
+	clear:both;
+	display:block;
+	margin:20px auto;
+}
+/* MAIN ACTION BUTTON */
+
+
+/* HEADER */
+
+header{
+	background-image: url(data:image/gif;base64,R0lGODdhAQBVAIQTAOzs7O3t7e7u7u/v7/Dw8PHx8fLy8vPz8/T09PX19fb29vf39/j4+Pn5+fr6+vv7+/z8/P39/f7+/v///////////////////////////////////////////////////ywAAAAAAQBVAAAFICAABMJAEIVhHEiSKMvCNI3zPBAURVI//cCgcEgsGo8hADs=);
+	*background-image:url(https://stc.pagseguro.uol.com.br/pagseguro/i/checkout-presentation/degrade.gif);
+	background-position:0 0;
+	background-repeat:repeat-x;
+}
+header .centerDiv{
+	position:relative;
+	min-height:56px;
+	border-left:1px solid #E2E2E2;
+	border-right:1px solid #E2E2E2;
+	padding:12px 15px 12px;
+	overflow:hidden;
+	_zoom:1;
+}
+
+header h1{
+	position:absolute;
+	top:50%;
+	margin-top:-28px;
+	float:left;
+}
+
+header h1 img{
+	height:50px;
+}
+
+@media print{
+	header h1{
+		background:none !important;
+	}
+	header h1 img{
+		display:block;
+	}
+}
+
+#sellerDiv{
+	background-color:#f2f2f2;
+	float:right;
+	max-width:600px;
+	padding:10px;
+	border-radius:3px;
+	overflow:hidden;
+	_zoom:1;
+}
+
+#sellerDiv address{
+	float:left;
+	font-size:11px;
+	font-style:normal;
+	overflow:hidden;
+	_zoom:1;
+	text-align:right;
+}
+
+#sellerDiv h2{
+	float:left;
+	margin:0 0 0 10px;
+	max-width:150px;
+	max-height:55px;
+	font-size:14px;
+}
+
+header aside{
+	background-color:#e6e6e6;
+	border-top:1px solid #b4d4a5;
+	border-bottom:1px solid #fff;
+}
+header aside p{font-size:12px;}
+header aside .centerDiv{
+	border-color:#ccc;
+	padding:5px 15px;
+	min-height:0;
+	position:static;
+}
+
+#knowMoreInfo{
+	display:none;
+	border-top:1px solid #CDDDC6;
+}
+#knowMoreInfo dl{
+	margin:0 auto;
+	padding:12px 18px;
+	width:948px;
+	border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+}
+#knowMoreInfo dt{
+	font-size:17px;
+	font-weight:bold;
+	color:#20510F;
+	padding:0 0 8px;
+	/* background-image:url(https://stc.pagseguro.uol.com.br/pagseguro/i/checkout-presentation/logo_pagseguro_saibamais.png); */
+	background-repeat:no-repeat;
+	background-position:top right;
+	height:22px;
+}
+#knowMoreInfo dd{
+	overflow:hidden;
+	zoom:1;
+}
+#knowMoreInfo li{
+	list-style-type:none;
+	padding:12px 21px;
+	float:left;
+	width:189px;
+	height:154px;
+	background-color:#F0F0F0;
+	font-size:13px;
+	text-align:center;
+	color:#303030;
+}
+#knowMoreInfo li+li{
+	margin-left:8px;
+}
+#knowMoreInfo h3{
+	background-image: url(data:image/png;base64,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);
+	*background-image:url(https://stc.pagseguro.uol.com.br/pagseguro/i/checkout-presentation/bg_saibamais.png);
+	background-repeat:no-repeat;
+	font-size:15px;
+	color:#20510F;
+	font-weight:bold;
+	padding-top:72px;
+}
+#knowMoreInfo .payment h3{background-position:center 0;}
+#knowMoreInfo .installment h3{background-position:center -108px;}
+#knowMoreInfo .warranty h3{background-position:center -216px;}
+#knowMoreInfo .security h3{background-position:center -324px;}
+#knowMoreInfo p{
+	margin:5px 0 0;
+}
+#knowMoreInfo .payment p{
+	padding:0 0 28px;
+	background-image: url(data:image/png;base64,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);
+	*background-image:url(https://stc.pagseguro.uol.com.br/pagseguro/i/checkout-presentation/flags_saibamais.png);
+	background-repeat:no-repeat;
+	background-position:bottom center;
+}
+
+/* HEADER */
+
+/* FOOTER */
+
+footer{border-top:1px solid #fff;color:#666;clear:both;text-align:center;}
+footer p{padding-top:5px;border-top:1px dotted #ccc;}
+footer small{font-size:10px}
+
+/* FOOTER */
+
+
+#all{
+	border:5px solid #F2F2F2;
+	background-color:#fff;
+	/*background-color:#F2F2F2;*/
+	margin:0 auto;
+	padding:0;
+	width:976px;
+	position:relative;
+	overflow:hidden;
+	_zoom:1;
+}
+#content{
+	overflow:hidden;
+	_zoom:1;
+}
+#content .content{
+	padding:5px 0px;
+	background-color:#fff;
+}
+#content .content+.content{
+	border-top:5px solid #F2F2F2;
+}
+
+#content .subcontent{
+	margin-top:32px;
+	border-top:1px solid #e6e6e6;
+	padding-top:32px;
+}
+
+#all h1,.cart caption{
+	color:#468638;
+	font-size:18px;
+	font-weight:bold;
+}
+
+#all h1 .questionMark{
+	font-size:0.666em !important;
+}
+
+#content h1{
+	line-height:25px;
+	margin-bottom:20px;
+}
+
+
+
+/* CART */
+
+#all > aside{
+	float:right;
+	padding-left:15px;
+	width:320px;
+	min-height:100px;
+	background-color:#F2F2F2;
+	zoom:1;
+}
+
+ #all > aside:after {
+    position: absolute;
+	z-index:0;
+    bottom: 0;
+	right:0;
+    top: 0;
+	background: inherit;
+	width: inherit;
+    content: "";
+	padding:inherit;
+}
+
+#all > aside h1{
+	padding:20px 10px 10px;
+}
+
+#all > aside .shipping-address-reminder{
+	border-top:1px dotted #B4B4B4;
+}
+
+.cart{
+	width:320px;
+	position:relative;
+	z-index:1;
+	padding-bottom:25px;
+	background-color:#F2F2F2;
+}
+.fixedCart #all > aside #cart{
+	position:fixed;
+	top:0;
+}
+.opened-knowMore #all > aside #cart{
+	position:relative !important;
+}
+
+.cart caption{
+	padding:20px 10px 10px;
+	text-align:left;
+}
+.cart table{width:100%;}
+.cart thead th,
+.cart tbody td,
+.cart tfoot td,
+#all > aside .shipping-address-reminder{
+	font-size:12px;
+	color:#858585;
+	font-weight:normal;
+}
+.cart thead th,
+.cart tbody .thead td{
+	padding:3px 10px;
+	text-align:left;
+	background-color:#d9d9d9;
+	color:#6c6c6c;
+}
+.cart thead tr#discountTop{
+	background: url("https://stc.pagseguro.uol.com.br/pagseguro/i/views/ibanking/promocao_cpa/selo-desc.png") no-repeat 10px 10px transparent;
+	border-top: 1px solid #D9D9D9;
+	height: 80px;
+}
+.cart thead tr#discountTop th{
+	background: none;
+	vertical-align: top;
+	position: relative;
+}
+.cart thead tr#discountTop th span{
+	color: #ffffff;
+	font-weight: bold;
+	margin: 22px 25px 0;
+	font-size: 12px;
+	float:left;
+	width: 30px;
+	text-align: center;
+}
+.cart thead tr#discountTop th span small{
+	font-size: 9px;
+}
+.cart thead tr#discountTop th p{
+	font-size: 16px;
+	color:#000000;
+	float: left;
+    font-size: 14px;
+    margin: 25px 0 0 5px;
+}
+.cart thead th+th, .cart tbody .thead td+td{text-align:right;}
+.cart tbody td,
+#all > aside .shipping-address-reminder{
+	padding:10px;
+}
+.cart tfoot td{
+	padding:5px 10px;
+}
+.cart tbody td+td,
+.cart tfoot td+td{
+	vertical-align:bottom;
+	font-size:13px;
+	color:#000;
+	text-align:right;
+	white-space:nowrap;
+}
+.cart tbody td+td strong,
+.cart tfoot td+td strong{
+	font-size:16px;
+	padding-left:5px;
+}
+.cart tr#discountRow td{
+	background-color:#FECC0B;
+	color:#000000;
+	border-top: 3px solid #F2F2F2;
+}
+.cart tbody tr + tr td{
+	border-top:1px dotted #B4B4B4;
+}
+.cart tbody .thead td,
+.cart tbody .preapproval td,
+#amountPerPayment td{
+	border-top:none !important;
+	color:#474747 !important;
+}
+
+#amountPerPayment td+td strong{font-size:15px !important;}
+
+.cart h3{
+	color:#474747;
+	font-weight:normal;
+	font-size:14px;
+	padding:0 0 7px;
+	max-width:180px;
+	overflow:hidden;
+	text-overflow:ellipsis;
+}
+.cart tfoot td strong{font-size:18px;}
+.cart tfoot td h3{padding:0;}
+.cart #totalRow td,
+.cart #prePaid td{
+	background-color:#d9d9d9;
+}
+.cart #prePaid td h3,
+.cart #totalRow td h3{
+	color:#6c6c6c;
+	font-weight:bold;
+}
+.cart #balanceRow td,
+.cart #taxRow td,
+.cart #freightRow td{
+	padding:10px;
+	color:#6c6c6c;
+}
+.cart #totalBuyRow td{
+	background-color:#e6e6e6;
+}
+.cart #totalBuyRow td h3{
+	color:#6c6c6c;
+}
+
+.cart tbody .preapproval td dl+dl,
+.cart tbody .preapproval td .details{
+	margin:20px 0 0;
+}
+.cart tbody .preapproval td dt{
+	font-weight:bold;
+	margin:0 0 5px;
+}
+
+.cart .flagCountry{
+	position: relative;
+	color: #999;
+	display: block;
+	padding: 1em;
+	text-align: right;
+	padding-right: 3em;
+}
+	.cart .flagCountry strong {
+		font-size: 12px !important;
+	}
+
+	.cart .flagCountry:before {
+		content: "";
+		position: absolute;
+		right: 0em;
+		top: 11px;
+		display: block;
+		width: 24px;
+		height: 15px;
+		background-image:url(https://d29i73yjyoycw7.cloudfront.net/site/images/flag-origin-country.png);
+	}
+
+	.cart .flagCountry.flagCountry-Brazil {
+		background-position: 0 0;
+	}
+/* CART */
+
+
+/* FIELD */
+
+.field+.field,
+.clear-all+.field,
+.double-columns+.field,
+.double-columns .field,
+.inline-block-wrapper .field{
+	margin:32px 0 0;
+}
+
+.double-columns.first-block .field:nth-of-type(1),
+.double-columns.first-block .field:nth-of-type(2){
+	margin-top:0 !important;
+}
+
+.field+h1{
+	margin-top:20px;
+}
+
+.field input.smaller,.field select.smaller{width:30px}
+.field input.small,.field select.small{width:60px}
+.field input.medium,.field select.medium{width:150px}
+.field input.big,.field select.big{width:250px}
+.field input.bigger,.field select.bigger{width:600px}
+
+.double-columns .field input.smaller,.double-columns  .field select.smaller{width:30px}
+.double-columns .field input.small,.double-columns .field select.small{width:41px}
+.double-columns .field input.medium,.double-columns .field select.medium{width:100px}
+.double-columns .field input.big,.double-columns .field select.big{width:228px}
+.double-columns .field input.bigger,.double-columns .field select.bigger{width:284px}
+
+.conditional-option-switch li+li{
+	margin:2em 0 0;
+}
+.conditional-option-fields{
+	padding:2em 0 0 2em;
+}
+/* FIELD */
+
+
+/**** walletHowItWorks ***/
+section #walletHowItWorksCB{display:none}
+#walletHowItWorksCB{color:#333;overflow:hidden; font-size:12px; width:485px;}
+#walletHowItWorksCB img{background-color:#efefef;float:left;margin-right:20px;padding:57px 20px}
+#walletHowItWorksCB dl, #walletHowItWorksCB p{overflow:hidden;}
+#walletHowItWorksCB dt{margin-bottom:5px}
+#walletHowItWorksCB dd{margin-bottom:15px}
+#walletHowItWorksCB small{color:#666;font-size:11px}
+/**** walletHowItWorks ***/
+
+.onlyweb{
+	display: block;
+}
+
+.contractRequired{text-align:left;}
+
+
+.readonly-address.field.showAlways.dynamicAddress {
+	display:none;
+}
+
+.address-street-field, .address-number-field, .address-complement-field, .address-district-field, .address-city-field,
+.address-state-field {
+	display:none;
+}
+
+#shippingAddressState.addressState, #billingAddressState.addressState {
+	width:25px;
+}

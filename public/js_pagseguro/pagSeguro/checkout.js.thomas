@@ -1,0 +1,284 @@
+// Setting the application NameSpace
+var cartao_token;
+var MyApplication = window.MyApplication || {};
+MyApplication.CheckoutPage = new function() {
+
+    var hasSessionId = false; // Inicia sem sessionId
+    $("#session").on("click", function () {
+        showLoading();
+
+        $.ajax({
+            url: "/pagseguro/sessionteste",
+            type: "GET",
+            cache: false,
+            success: function (response) {
+
+                PagSeguroDirectPayment.setSessionId(response);
+                console.log(response);
+                hasSessionId = true;
+                cardBrandEvents();
+
+            },
+            error: function () {
+                alert(" Não foi possível obter o Session ID do PagSeguro ");
+            },
+            complete: function () {
+                hideMessages();
+            }
+        });
+
+
+    });
+    // Gerenciando bandeira do cartão
+    var cardBrandEvents = function () {
+
+        var verifyBrand = function () {
+            // Obtendo apenas os 6 primeiros dígitos (bin)
+            var cardBin = $("#cardNumber").val().substring(0, 6);
+
+            // Atualizar Brand apenas se tiver 6 ou mais dígitos preenchidos
+            if (String(cardBin).length >= 6) {
+
+                // Atualizar Brand
+                updateCardBrand(cardBin);
+
+            } else {
+
+                // Se não digitou o número do cartão, esconder parcelamento
+                $("#installmentsWrapper").hide();
+
+            }
+
+        };
+
+        // Verificar bandeira após qualquer mudança nos inputs de cartão de crédito
+        $(".cardDatainput").change(function () {
+            verifyBrand();
+        });
+
+        // Verificar bandeira logo no início
+        verifyBrand();
+
+    };
+
+    var updateCardBrand = function (cardBin) {
+        PagSeguroDirectPayment.getBrand({
+            cardBin: cardBin,
+
+            success: function (response) {
+                var brand = response.brand.name;
+
+                $("#cardBrand").attr('brand', brand);
+                $("#creditCardBrand").val(brand);
+
+                updateInstallments(brand);
+
+            },
+
+            error: function (response) {
+            },
+
+            complete: function (response) {
+
+            }
+
+        });
+
+    };
+
+    // Atualiza dados de parcelamento atráves da bandeira do cartão
+    var updateInstallments = function (brand) {
+
+        var amount = Number($("#totalValue").html());
+
+        PagSeguroDirectPayment.getInstallments({
+            amount: amount,
+            brand: brand,
+            success: function (response) {
+
+                // Para obter o array de parcelamento use a bandeira como "chave" da lista "installments"
+                var installments = response.installments[brand];
+
+                var options = '';
+                for (var i in installments) {
+
+                    var optionItem = installments[i];
+                    var optionQuantity = optionItem.quantity; // Obtendo a quantidade
+                    var optionAmount = optionItem.installmentAmount; // Obtendo o valor
+                    var optionLabel = (optionQuantity + "x " + formatMoney(optionAmount)); // montando o label do option
+                    var price = Number(optionAmount).toMoney(2, '.', ',');
+
+                    options += ('<option value="' + optionItem.quantity + '" dataPrice="' + price + '">' + optionLabel + '</option>');
+
+                }
+
+                // Atualizando dados do select de parcelamento
+                $("#installmentQuantity").html(options);
+
+                // Exibindo select do parcelamento
+                $("#installmentsWrapper").show();
+
+                // Utilizando evento "change" como gatilho para atualizar o valor do parcelamento
+                $("#installmentQuantity").trigger('change');
+
+            },
+            error: function (response) {
+
+            },
+            complete: function (response) {
+
+            }
+        });
+
+    };
+
+    var updateCardToken = function (callback) {
+
+        PagSeguroDirectPayment.createCardToken({
+
+            cardNumber: $("#cardNumber").val(),
+            brand: $("#creditCardBrand").val(),
+            cvv: $("#cardCvv").val(),
+            expirationMonth: $("#cardExpirationMonth").val(),
+            expirationYear: $("#cardExpirationYear").val(),
+
+            success: function (response) {
+
+                // Obtendo token para pagamento com cartão
+                token = response.card.token;
+                console.log(token);
+                return token;
+                // Executando o callback (pagamento) passando o token como parâmetro
+                //callback(token);
+
+            },
+
+            error: function (response) {
+
+                showCardTokenErrors(response.errors);
+
+            },
+
+            complete: function (response) {
+
+            }
+
+        });
+
+    };
+
+    // Fazer pagamento de qualquer tipo
+    var doPayment = function (callback) {
+
+        // travando a tela (loading)
+        showLoading();
+
+        // Adicionando dados do comprador aos parâmentros de pagamento
+        //areaToParams("buyerData", params);
+
+        // Adicionando dados dos items (carrinho) aos parâmetros de pagamento
+        //addCartData(params);
+
+        // Atualizando hash do comprador
+        var params = montarJson();
+        console.log(params);
+        // Request para o PHP passando os dados do pagamento
+        $.ajax({
+            type: "POST",
+            url: "/pagseguro/pagar",
+            data: params,
+            dataType: 'json',
+            cache: false,
+            success: function (response) {
+
+                // Executa o callback passado como parâmentro
+                callback(response.transaction);
+
+            },
+            error: function (jqxhr) {
+                // Liberando a tela (esconde o loading)
+                //hideMessages();
+                // obtendo lista de erros
+                var response = $.parseJSON(jqxhr.responseText);
+
+                // Exibindo lista de erros
+                showPaymentErrors(response.errors);
+
+            }
+
+        });
+
+    };
+
+    $("#cartao").on("click", function () {
+        updateCardToken();
+    });
+
+    $("#cardNumber").on('input', function () {
+        cardBrandEvents();
+    });
+
+    $("#pagar").on("click", function () {
+        doPayment();
+    });
+
+    function montarJson() {
+        return {
+            "sender": {
+                "name": $("#senderName").val(),
+                "email": $("#senderEmail").val(),
+                "hash": PagSeguroDirectPayment.getSenderHash(),
+                "phone": {
+                    "areaCode": $("#senderAreaCode").val(),
+                    "number": $("#senderPhone").val()
+                },
+                "address": {
+                    "street": $('#shippingAddressStreet').val(),
+                    "number": $('#shippingAddressNumber').val(),
+                    "complement": $('#shippingAddressComplement').val(),
+                    "district": $('#shippingAddressDistrict').val(),
+                    "city": $('#shippingAddressCity').val(),
+                    "state": $('#shippingAddressState').val(),
+                    "country": $('#shippingAddressCountry').val(),
+                    "postalCode": $('#shippingAddressPostalCode').val()
+                },
+                "documents": [
+                    {
+                        "type": "CPF",
+                        "value": $('#senderCPF').val()
+                    }
+                ]
+            },
+            "paymentMethod": {
+                "type": "CREDITCARD",
+                "creditCard": {
+                    "token": updateCardToken(),
+                    "holder": {
+                        "name": $("#senderName").val(),
+                        "birthDate": $("#creditCardHolderBirthDate").val(),
+                        "documents": [
+                            {
+                                "type": "CPF",
+                                "value": $('#senderCPF').val()
+                            }
+                        ],
+                        "phone": {
+                            "areaCode": $("#senderAreaCode").val(),
+                            "number": $("#senderPhone").val()
+                        },
+                        "billingAddress": {
+                            "street": $('#shippingAddressStreet').val(),
+                            "number": $('#shippingAddressNumber').val(),
+                            "complement": $('#shippingAddressComplement').val(),
+                            "district": $('#shippingAddressDistrict').val(),
+                            "city": $('#shippingAddressCity').val(),
+                            "state": $('#shippingAddressState').val(),
+                            "country": $('#shippingAddressCountry').val(),
+                            "postalCode": $('#shippingAddressPostalCode').val()
+                        }
+                    }
+                }
+            }
+        };
+
+    }};
