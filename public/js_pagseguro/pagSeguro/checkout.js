@@ -179,7 +179,7 @@ MyApplication.CheckoutPage = new function() {
         console.log("http://35.198.42.142:3000/payCart/"+$('.identificador').data('value'));
         $.ajax({
             type:"POST",
-            url: "http://35.198.42.142:3000/payCart/"+$('.identificador').data('value'),
+            url: "/pagar?id="+$('.identificador').data('value'),
             
             success: function(response) {
                 // Executa o callback passado como parâmentro
