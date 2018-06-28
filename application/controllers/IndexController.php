@@ -9,11 +9,12 @@ class IndexController extends AbstractBaseController
         $data = new Application_PagSeguro_PagSeguroData();
         $id = $this->getParam('id');
         if(!$id) {
-            $id = 9;
+            $id = 15;
         }
         $teste = $this->requester($id);
-        var_dump($teste);
-        exit();
+        if(!$teste) {
+            $id = 15;
+        }
         $json_decoded = json_decode(json_decode($teste, true), true);
         $produtos = array();
         $preco = 0;
