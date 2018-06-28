@@ -8,6 +8,9 @@ class IndexController extends AbstractBaseController
         
         $data = new Application_PagSeguro_PagSeguroData();
         $id = $this->getParam('id');
+        if(!$id) {
+            $id = 9;
+        }
         $teste = $this->requester($id);
         $json_decoded = json_decode(json_decode($teste, true), true);
         $produtos = array();
