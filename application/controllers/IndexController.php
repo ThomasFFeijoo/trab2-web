@@ -15,8 +15,7 @@ class IndexController extends AbstractBaseController
         $json_decoded = json_decode(json_decode($teste, true), true);
         $produtos = array();
         $preco = 0;
-var_dump($json_decoded);
-exit();
+
         foreach ($json_decoded['shoppingCart'] as $row => $key) {
             if(is_numeric($row)) {
                 $produto = $this->getProduto($row);
@@ -26,7 +25,8 @@ exit();
             }
 
         }
-
+var_dump($produtos);
+exit();
         $this->view->produtos = $produtos;
         $this->view->preco = $preco;
         $this->view->identificador = $id;
