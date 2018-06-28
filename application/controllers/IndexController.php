@@ -25,8 +25,7 @@ class IndexController extends AbstractBaseController
             }
 
         }
-var_dump($produtos);
-exit();
+        
         $this->view->produtos = $produtos;
         $this->view->preco = $preco;
         $this->view->identificador = $id;
