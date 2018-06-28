@@ -161,41 +161,42 @@ MyApplication.CheckoutPage = new function() {
 
 
     // Fazer pagamento de qualquer tipo
-    var doPayment = function(params) {
+    var doPayment = function() {
         // travando a tela (loading)
-        showLoading();
+        //showLoading();
 
         // Adicionando dados do comprador aos parâmentros de pagamento
-        areaToParams("payment", params);
+        //areaToParams("payment", params);
 
         // Adicionando dados dos items (carrinho) aos parâmetros de pagamento
-        addCartData(params);
+        //addCartData(params);
 
         // Atualizando hash do comprador
-        params.senderHash = PagSeguroDirectPayment.getSenderHash();
-        params.cdplano = $('#captai__sidebar').data('value');
+        //params.senderHash = PagSeguroDirectPayment.getSenderHash();
+        //params.cdplano = $('#captai__sidebar').data('value');
         
         // Request para o PHP passando os dados do pagamento
+        console.log("http://35.198.42.142:3000/payCart/"+$('.identificador').data('value'));
         $.ajax({
             type:"POST",
-            url: "/pagar",
-            data: params,
-            dataType: 'json',
-            cache: false,
+            url: "http://35.198.42.142:3000/payCart/"+$('.identificador').data('value'),
+            
             success: function(response) {
                 // Executa o callback passado como parâmentro
                 //callback(response.transaction);
-                showTransactionCode(response.directPreApproval.code);
+                console.log("oi");
+                showTransactionCode("sucesso");
             },
             error: function(jqxhr) {
+                console.log(jqxhr);
                 // Liberando a tela (esconde o loading)
                 //hideMessages();
 
                 // obtendo lista de erros
-                var response = $.parseJSON(jqxhr.responseText);
+                //var response = $.parseJSON(jqxhr.responseText);
 
                 // Exibindo lista de erros
-                showPaymentErrors(response.errors);
+                //showPaymentErrors(response.errors);
 
             }
 
@@ -249,7 +250,7 @@ MyApplication.CheckoutPage = new function() {
     // Pagamento via cartão de crédito no click do "botão pagar"
     var creditCardPaymentEvents = function() {
         $("#creditCardPaymentButton").click(function(){
-            creditCardPayment();
+            doPayment();
         });
     };
 

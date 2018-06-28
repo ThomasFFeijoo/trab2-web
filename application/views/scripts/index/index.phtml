@@ -29,13 +29,11 @@
     <h3>Resumo da compra</h3>
     <h5>Detalhes do carrinho</h5>
     <ul>
-        <li>Produto</li>
-        <li>Produto</li>
-        <li>Produto</li>
-        <li>Produto</li>
-        <li>Produto</li>
-        <li>Produto</li>
-        <li>Produto</li>
+        <?php
+        foreach ($this->produtos as $row) {
+        ?>
+        <li><?php echo $row;?></li>
+        <?php }?>
 
 
     </ul>
@@ -44,7 +42,7 @@
         de acordo com as seguintes condições:</p>
     <fieldset>
         <h5>Valor a pagar</h5>
-        <p><strong>R$ preço</strong>
+        <p><strong>R$ <?php echo $this->preco;?></strong>
         </p>
     </fieldset>
     <br/>
@@ -59,6 +57,7 @@
         <form id="payment" action="#" method="post" class="captai__payment form-inline">
             <input type="hidden" name="deviceId" class="deviceId" value="" />
             <input type="hidden" name="tokenDNA" class="tokenDNA" value="" />
+            <input type="hidden" name="tokenDNA" class="identificador" data-value="<?php echo $this->identificador;?>" />
 
             <input type="hidden" id="acsrfToken" name="acsrfToken" value="muEm6ac4n.BmphvhymO8dy43H8uiFWEreYy09Ql8uQc2-1487686638596-14400000-48"
             />
