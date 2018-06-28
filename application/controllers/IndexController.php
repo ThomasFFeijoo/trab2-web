@@ -12,11 +12,9 @@ class IndexController extends AbstractBaseController
             $id = 15;
         }
         $teste = $this->requester($id);
-        if(is_null($teste)) {
-            exit();
+        if($teste == "null") {
+            $teste = $this->requester(15);
         }
-        var_dump($teste);
-        exit();
         $json_decoded = json_decode(json_decode($teste, true), true);
         $produtos = array();
         $preco = 0;
