@@ -13,7 +13,7 @@ class IndexController extends AbstractBaseController
         }
         $teste = $this->requester($id);
         if(!$teste) {
-            $id = 15;
+            $teste = $this->requester(15);
         }
         $json_decoded = json_decode(json_decode($teste, true), true);
         $produtos = array();
