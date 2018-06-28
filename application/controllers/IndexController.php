@@ -62,7 +62,7 @@ class IndexController extends AbstractBaseController
         $aqui = curl_exec($ch);
         curl_close($ch);*/
 
-        $aqui = '{"nome": "hellow", "categoria": "String", "descricao": "String", "vendedor": "String", "preco": 20}';
+        $aqui = '{"nome": "Bicicleta", "categoria": "String", "descricao": "String", "vendedor": "String", "preco": 20}';
         return $aqui;
     }
 

@@ -184,7 +184,6 @@ MyApplication.CheckoutPage = new function() {
             success: function(response) {
                 // Executa o callback passado como parâmentro
                 //callback(response.transaction);
-                console.log("oi");
                 showTransactionCode("sucesso");
             },
             error: function(jqxhr) {
